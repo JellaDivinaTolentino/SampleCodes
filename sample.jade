@@ -1,0 +1,46 @@
+.col-sm-12
+    .panel.panel-default
+        .panel-body
+            form.form-validate.form-horizontal(name="vehicle.formValidate",ng-model="vehicle.FormVehicle", ng-submit="vehicle.store()",novalidate="")
+                fieldset: .form-group
+                    label.col-lg-2.control-label Title
+                        span.text-danger *
+                    .col-lg-3
+                        input.form-control(type='text', name='title', required='', ng-model="vehicle.FormVehicle.title")
+                        span.text-danger(ng-show="vehicle.validateInput('title', 'required')") This field is required
+                fieldset: .form-group
+                    label.col-lg-2.control-label Type
+                        span.text-danger *
+                    .col-lg-3
+                        select.form-control(required='',ng-model='vehicle.FormVehicle.type_id',name="type_id" ng-options="type.type_id as type.title for type in types | filter: {type:'transpo'}")
+                        span.text-danger(ng-show="vehicle.validateInput('type_id', 'required')") This field is required
+                fieldset: .form-group
+                    label.col-lg-2.control-label Capacity
+                        span.text-danger *
+                    .col-lg-4.row
+                        .col-lg-4
+                            input.form-control(type='number', name='capacity', required='', ng-model="vehicle.FormVehicle.capacity")
+                        .col-lg-12
+                            span.text-danger(ng-show="vehicle.validateInput('capacity', 'required')") This field is required
+                            span.text-danger(ng-show="vehicle.validateInput('capacity', 'number')") This field must be a valid number
+                fieldset: .form-group
+                    label.col-lg-2.control-label Maximum count of infant
+                        span.text-danger *
+                    .col-lg-4.row
+                        .col-lg-4
+                            input.form-control(type='number', name='max_infant_count', required='', ng-model="vehicle.FormVehicle.max_infant_count")
+                        .col-lg-12
+                            span.text-danger(ng-show="vehicle.validateInput('max_infant_count', 'required')") This field is required
+                            span.text-danger(ng-show="vehicle.validateInput('max_infant_count', 'number')") This field must be a valid number
+                fieldset: .form-group
+                    label.col-sm-2.control-label Status
+                    .col-lg-2
+                        select(name="status" ng-model="vehicle.FormVehicle.status" ng-options="status.value as status.title for status in vehicleStatus" class="form-control")
+                fieldset: .form-group
+                    label.col-lg-2.control-label Description
+                    .col-lg-10
+                        textarea.form-control(ng-model='vehicle.FormVehicle.description', placeholder='Description')
+                fieldset: .form-group
+                    .col-lg-12
+                        a.btn.btn-danger.pull-right(ng-href="{{$state.href('app.vehicle.list')}}") Cancel
+                        button.btn.btn-primary.pull-right.mr-sm(type="submit") Save
